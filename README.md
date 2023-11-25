@@ -33,21 +33,25 @@ Then, you need to set the following column name in the Excel File and paste the 
 Column 1: Profile Links
 ```
 
-Then, you need to create a XLSX File or Excel File for the Failed Profiles and name it:
-```bash
-Name: failed_profiles.xlsx
-```
-
-Then, you need to set the following column name in the Failed Profiles Excel File:
-```bash
-Column 1: Profile Links
-```
 
 Then, in the 'Instagram.py' file on Line 12 & 13 Enter your Username/Email ID and Password in between the Quotes for the String:
 ```bash
 username = "Enter Your Username/Email"
 password = "Enter Your Password"
 ```
+
+Then, Enter the path to your profile_links.csv file on Line 17 in the Code:
+```bash
+file_path = "Enter the path to your Profile_links.csv File"
+```
+
+Once the execution is done, there will be a new CSV File called 'profile_links_updated.csv' and in that file there will be a column next to the profile links and it will tell the status of whether it has messaged that particular profile or not. 
+
+Then, Enter the path to your profile_links_updated.csv file on Line 69 in the Code:
+```bash
+updated_file_path = "Enter the path to your Profile_links_updated.csv"
+```
+
 
 Then, customize your messages which you want to send to the Instagram profile's on Line 59-64 and you can add multiple messages which you want to send and the script will randomize the messages sent to each user:
 ```bash
@@ -60,6 +64,7 @@ messages = [
 ```
 
 Then, you can simply run the python file and not touch anything and it will execute the message sending to the Instagram profile's provided in the XLSX or Excel File.
+
 
 ## Authors
 

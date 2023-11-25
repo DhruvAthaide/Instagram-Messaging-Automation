@@ -7,21 +7,18 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import pandas as pd
 import random
+import csv
 
 # Instagram Login Credentials
-username = "lutapeho@yogrow.co"
-password = "Scrapertest1234"
+username = "Enter Your Username/Email"
+password = "Enter Your Password"
 
-# XLSX file to read all user profiles provided
-data = pd.read_excel("profile_links.xlsx", header=None, names=['Profile Links'])
+# CSV File Reading with specified encoding and removing leading/trailing whitespaces
+file_path = "C:\\Users\\athai\\VS Code\\Personal Coding\\Automated Projects\\Instagram Messaging Automation\\profile_links.csv"
+data = pd.read_csv(file_path, header=None, names=['Profile Links'], encoding='latin1', skipinitialspace=True, skip_blank_lines=True)
 
-profile_links = data['Profile Links'].tolist()
+profile_links = data['Profile Links'].str.strip().tolist()
 
-# XLSX file to store failed profile links
-failed_profiles_file = "failed_profiles.xlsx"
-
-# Create an empty DataFrame to store failed profile links
-failed_profiles_df = pd.DataFrame(columns=['Profile Links'])
 
 # Configuring the Chrome driver and making it Handling Notification Alert
 options = webdriver.ChromeOptions()
@@ -68,6 +65,14 @@ max_messages = 50  # Set the max number of messages to not be detected as a bot
 messages_sent = 0   # This is the variable for the number of messages sent total when the script is run
 time_interval = 600  # Set the time interval in seconds
 
+# Create a new CSV file for updated status
+updated_file_path = "C:\\Users\\athai\\VS Code\\Personal Coding\\Automated Projects\\Facebook Messaging Automation\\profile_links_updated.csv"
+
+with open(updated_file_path, 'w', newline='', encoding='latin1') as updated_csv:
+    writer = csv.writer(updated_csv)
+    writer.writerow(['Profile Links', 'Status'])  # Writing header
+
+
 for profile_link in profile_links:
     try:
         if messages_sent >= max_messages:
@@ -109,6 +114,10 @@ for profile_link in profile_links:
 
         messages_sent += 1
 
+        # Update the status in the new CSV file
+        writer.writerow([profile_link, "Completed"])
+        print(f"Profile link {profile_link} marked as 'Completed' in the original file")
+
         # Pause the script to avoid being detected as a bot
         time.sleep(random.uniform(3.2, 4.5))
 
@@ -122,13 +131,11 @@ for profile_link in profile_links:
     except Exception as e:
         print("Error sending message to", profile_link, ":", e)
 
-        # All failed profiles are stored in the failed_profiles.xlsx file
-        with open(failed_profiles_file, 'a') as file:
-            file.write(profile_link + '\n')
+        # Update the status in the new CSV file
+        writer.writerow([profile_link, "Failed"])
+        print(f"Profile link {profile_link} marked as 'Failed' in the original file")
 
-        print(f"Profile link {profile_link} added to {failed_profiles_file}")
-
-    print(number, "-----------------------------------------Msg_automate_kaux---------------------------------------------")
+    print(number, "-----------------------------------------Moving to the next Profile---------------------------------------------")
     number += 1
 
 driver.quit()
