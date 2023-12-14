@@ -20,11 +20,11 @@ data = pd.read_csv(file_path, header=None, names=['Profile Links'], encoding='la
 profile_links = data['Profile Links'].str.strip().tolist()
 
 
-# Configuring the Chrome driver and making it Handling Notification Alert
+# Configuring the Chrome driver and Handling Notification Alert
 options = webdriver.ChromeOptions()
-prefs = {"profile.default_content_setting_values.notifications": 2}
+prefs = {"profile.default_content_setting_values.notifications": 2,"profile.default_content_setting_values.cookies":2}
 options.add_experimental_option("prefs", prefs)
-driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+driver = webdriver.Chrome(options=options)
 
 # Opening the Instagram Website
 driver.get("https://www.instagram.com/")
