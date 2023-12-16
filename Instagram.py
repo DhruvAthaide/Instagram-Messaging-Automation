@@ -14,8 +14,7 @@ username = "Enter Your Username/Email"
 password = "Enter Your Password"
 
 # CSV File Reading with specified encoding and removing leading/trailing whitespaces
-file_path = "C:\\Users\\athai\\VS Code\\Personal Coding\\Automated Projects\\Instagram Messaging Automation\\profile_links.csv"
-data = pd.read_csv(file_path, header=None, names=['Profile Links'], encoding='latin1', skipinitialspace=True, skip_blank_lines=True)
+data = pd.read_csv("profile_link.csv", header=None, names=['Profile Links'], encoding='latin1', skipinitialspace=True, skip_blank_lines=True)
 
 profile_links = data['Profile Links'].str.strip().tolist()
 
@@ -66,7 +65,7 @@ messages_sent = 0   # This is the variable for the number of messages sent total
 time_interval = 600  # Set the time interval in seconds
 
 # Create a new CSV file for updated status
-updated_file_path = "C:\\Users\\athai\\VS Code\\Personal Coding\\Automated Projects\\Facebook Messaging Automation\\profile_links_updated.csv"
+updated_file_path = "Enter the path to your Profile_links_updated.csv"
 
 with open(updated_file_path, 'w', newline='', encoding='latin1') as updated_csv:
     writer = csv.writer(updated_csv)

@@ -1,7 +1,7 @@
 
 # Instagram Automated Messaging Tool
 
-I have created a Instagram Automated Messaging Tool using Python to send a private message to the profile links you provide!
+I have created a Instagram Automated Messaging Tool using Python to send a private message to the profile links you provide! This script uses Selenium browser to execute the commands.
 
 
 ## Installation
@@ -23,9 +23,9 @@ cd Instagram-Messaging-Automation
 pip install -r requirements.txt
 ```
 
-Then, you need to create a XLSX File or Excel File and name it:
+Then, you need to create a CSV File and name it:
 ```bash
-Name: profile_links.xlsx
+Name: profile_links.csv
 ```
 
 Then, you need to set the following column name in the Excel File and paste the Instagram profile's link you want to message in this column:
@@ -40,14 +40,10 @@ username = "Enter Your Username/Email"
 password = "Enter Your Password"
 ```
 
-Then, Enter the path to your profile_links.csv file on Line 17 in the Code:
-```bash
-file_path = "Enter the path to your Profile_links.csv File"
-```
 
 Once the execution is done, there will be a new CSV File called 'profile_links_updated.csv' and in that file there will be a column next to the profile links and it will tell the status of whether it has messaged that particular profile or not. 
 
-Then, Enter the path to your profile_links_updated.csv file on Line 69 in the Code:
+Then, Enter the path to your profile_links_updated.csv file on Line 68 in the Code:
 ```bash
 updated_file_path = "Enter the path to your Profile_links_updated.csv"
 ```
@@ -64,6 +60,8 @@ messages = [
 ```
 
 Then, you can simply run the python file and not touch anything and it will execute the message sending to the Instagram profile's provided in the XLSX or Excel File.
+
+Keep in mind, the scipt will randomly select any message from the 'messages' array to send to each user profile.
 
 
 ## Authors
